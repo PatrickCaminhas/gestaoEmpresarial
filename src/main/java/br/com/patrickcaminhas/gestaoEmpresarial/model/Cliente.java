@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.springframework.cglib.core.Local;
+// import org.springframework.cglib.core.Local;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -26,11 +26,14 @@ public class Cliente {
     @Embedded
     private DadosCadastrais dados;
 
+    @Column(name = "telefone_enc", length = 64)
+    private String telefone_enc;
     @Column(name = "endereco_enc", nullable = false, length = 512)
     private String endereco_enc;
 
     @Column(name = "saldo_devedor", precision = 15, scale = 2)
     private BigDecimal saldo_devedor;
+
 
     @Column(nullable = false)
     private Boolean ativo;
@@ -48,10 +51,11 @@ public class Cliente {
 
     }
 
-    public Cliente(String nome, String sobrenome_enc, String cpf_cnpj_enc, String documento, String endereco_enc, int ultimo_a_modificar) {
+    public Cliente(String nome, String sobrenome_enc, String documento, String endereco_enc, String telefone_enc, int ultimo_a_modificar) {
         this.id = UUID.randomUUID().toString().replace("-", "");
         this.dados = new DadosCadastrais(nome, sobrenome_enc, documento);
         this.endereco_enc = CriptografiaService.encriptar(endereco_enc);
+        this.telefone_enc = CriptografiaService.encriptar(telefone_enc);
         this.saldo_devedor = new BigDecimal(0.0);
         this.ativo = true;
         this.ultimo_a_modificar = ultimo_a_modificar;
@@ -133,6 +137,14 @@ public class Cliente {
 
     public void setUpdate_at(LocalDate update_at) {
         this.update_at = update_at;
+    }
+
+    public String getTelefone_enc() {
+        return telefone_enc;
+    }
+
+    public void setTelefone_enc(String telefone_enc) {
+        this.telefone_enc = telefone_enc;
     }
 
 }

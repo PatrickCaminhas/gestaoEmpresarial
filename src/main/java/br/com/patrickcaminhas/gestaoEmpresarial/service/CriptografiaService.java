@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class CriptografiaService {
 
-    private static final String CHAVE_SECRETA = "ColocarEmVariavelDeAmbiente";
+    // private static final String CHAVE_SECRETA = "ColocarEmVariavelDeAmbiente";
 
     private static final String CHAVE_16_BYTES = "1234567890123456";
 

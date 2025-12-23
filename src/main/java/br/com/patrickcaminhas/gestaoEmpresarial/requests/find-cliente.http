@@ -1,0 +1,6 @@
+# GET http://localhost:8081/api/clientes
+# Accept: application/json
+
+###
+GET http://localhost:8081/api/clientes/7b721a0510414a349fe4206eadf36198
+Accept: application/json

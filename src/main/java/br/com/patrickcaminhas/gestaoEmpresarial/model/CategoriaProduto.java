@@ -3,12 +3,12 @@ package br.com.patrickcaminhas.gestaoEmpresarial.model;
 import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
+// import jakarta.persistence.Embedded;
+// import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
+// import jakarta.persistence.PrePersist;
+// import jakarta.persistence.PreUpdate;
+// import jakarta.persistence.Table;
 
 @Embeddable
 public class CategoriaProduto {
@@ -19,10 +19,12 @@ public class CategoriaProduto {
     @Column(name= "nome", nullable = false, length = 128)
     private String nome;
 
-    @Column(name= "nome", length = 32)
+    @Column(name= "sigla", length = 32)
     private String sigla;
 
-
+    protected CategoriaProduto(){
+        
+    }
     
     public CategoriaProduto(String nome, String sigla) {
         this.id = UUID.randomUUID().toString().replace("-", "");

@@ -17,8 +17,6 @@ public class Venda {
     private FormaPagamento forma_pagamento;
     private LocalDate created_at;
 
-    
-
     public Venda(String codigo_pedido, String cliente_id, String atendente_id, String caixa_id,
             EstadoCompra estado, BigDecimal valor_bruto, BigDecimal valor_desconto, BigDecimal valor_liquido,
             FormaPagamento forma_pagamento, LocalDate created_at) {

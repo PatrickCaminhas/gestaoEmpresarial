@@ -1,0 +1,11 @@
+POST http://localhost:8081/api/clientes
+Content-Type: application/json
+
+{
+  "nome": "Luca",
+  "sobrenome": "Ferreira",
+  "documento": "12345678912",
+  "endereco": "Rua Exemplo, 1000, Sao Paulo, SP",
+  "telefone": "11999999333",
+  "ultimo_a_modificar": 1
+}

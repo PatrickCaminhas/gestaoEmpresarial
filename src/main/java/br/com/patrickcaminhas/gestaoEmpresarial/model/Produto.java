@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.springframework.cglib.core.Local;
+// import org.springframework.cglib.core.Local;
 
 public class Produto {
     private String id;
