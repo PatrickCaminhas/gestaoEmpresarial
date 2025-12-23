@@ -6,25 +6,67 @@ import java.util.UUID;
 
 import org.springframework.cglib.core.Local;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
+import br.com.patrickcaminhas.gestaoEmpresarial.service.CriptografiaService;
+
+@Entity
+@Table(name = "clientes")
 public class Cliente {
+
+    @Id
+    @Column(length = 32, nullable = false, updatable = false)
     private String id;
+
+    @Embedded
     private DadosCadastrais dados;
+
+    @Column(name = "endereco_enc", nullable = false, length = 512)
     private String endereco_enc;
+
+    @Column(name = "saldo_devedor", precision = 15, scale = 2)
     private BigDecimal saldo_devedor;
+
+    @Column(nullable = false)
     private Boolean ativo;
+
+    @Column(name = "ultimo_a_modificar")
     private int ultimo_a_modificar;
+
+    @Column(name = "created_at", updatable = false)
     private LocalDate created_at;
+
+    @Column(name = "updated_at")
     private LocalDate update_at;
 
-    public Cliente(String nome, String sobrenome_enc, String cpf_cnpj_enc, String endereco_enc,
-            int ultimo_a_modificar) {
+    protected Cliente() {
+
+    }
+
+    public Cliente(String nome, String sobrenome_enc, String cpf_cnpj_enc, String documento, String endereco_enc, int ultimo_a_modificar) {
         this.id = UUID.randomUUID().toString().replace("-", "");
-        this.dados = new DadosCadastrais(nome, sobrenome_enc, endereco_enc);
-        this.endereco_enc = endereco_enc;
+        this.dados = new DadosCadastrais(nome, sobrenome_enc, documento);
+        this.endereco_enc = CriptografiaService.encriptar(endereco_enc);
         this.saldo_devedor = new BigDecimal(0.0);
         this.ativo = true;
         this.ultimo_a_modificar = ultimo_a_modificar;
         this.created_at = LocalDate.now();
+        this.update_at = this.created_at;
+    }
+
+    @PrePersist
+    private void onPersist() {
+        this.created_at = LocalDate.now();
+        this.update_at = this.created_at;
+    }
+
+    @PreUpdate
+    private void onUpdate() {
         this.update_at = LocalDate.now();
     }
 
@@ -32,12 +74,29 @@ public class Cliente {
         return id;
     }
 
+    public DadosCadastrais getDadosCadastrais() {
+        return this.dados;
+    }
+
+    public void setDadosCadastrais(String nome, String sobrenome_enc, String documento) {
+        try {
+            this.dados = new DadosCadastrais(nome, sobrenome_enc, documento);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getEndereco_enc() {
         return endereco_enc;
     }
 
     public void setEndereco_enc(String endereco_enc) {
-        this.endereco_enc = endereco_enc;
+        try {
+            this.endereco_enc = CriptografiaService.encriptar(endereco_enc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public BigDecimal getSaldo_devedor() {
