@@ -65,10 +65,10 @@ public class Funcionario {
     public void setSenha_hash(String senha_hash) {
         this.senha_hash = senha_hash;
     }
-    public String getPin_hash() {
+    public int getPin_hash() {
         return pin_hash;
     }
-    public void setPin_hash(String pin_hash) {
+    public void setPin_hash(int pin_hash) {
         this.pin_hash = pin_hash;
     }
     public int getTipo_perfil() {
