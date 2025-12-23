@@ -10,7 +10,6 @@ public class DadosCadastrais {
         this.nome = nome;
         this.sobrenome_enc = sobrenome_enc;
          this.documento = documento;
-       
     }
 
 
