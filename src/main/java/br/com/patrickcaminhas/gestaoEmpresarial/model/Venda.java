@@ -19,7 +19,7 @@ public class Venda {
 
     
 
-    public Venda(String id, String codigo_pedido, String cliente_id, String atendente_id, String caixa_id,
+    public Venda(String codigo_pedido, String cliente_id, String atendente_id, String caixa_id,
             EstadoCompra estado, BigDecimal valor_bruto, BigDecimal valor_desconto, BigDecimal valor_liquido,
             FormaPagamento forma_pagamento, LocalDate created_at) {
         this.id = UUID.randomUUID().toString().replace("-", "");

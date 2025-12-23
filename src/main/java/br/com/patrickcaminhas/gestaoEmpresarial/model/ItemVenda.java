@@ -13,7 +13,7 @@ public class ItemVenda {
     private BigDecimal subtotal;
     private LocalDate created_at;
 
-    public ItemVenda(String id, String venda_id, String produto_id, int quantidade, BigDecimal preco_unitario_aplicado,
+    public ItemVenda(String venda_id, String produto_id, int quantidade, BigDecimal preco_unitario_aplicado,
             BigDecimal subtotal, LocalDate created_at) {
         this.id = UUID.randomUUID().toString().replace("-", "");
         this.venda_id = venda_id;

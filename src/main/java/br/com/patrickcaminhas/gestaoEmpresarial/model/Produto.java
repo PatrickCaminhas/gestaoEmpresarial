@@ -2,6 +2,7 @@ package br.com.patrickcaminhas.gestaoEmpresarial.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.cglib.core.Local;
 
@@ -17,9 +18,9 @@ public class Produto {
     private LocalDate created_at;
     private LocalDate updated_at;
 
-    public Produto(String id, String nome, CategoriaProduto categoria, BigDecimal preco_custo, BigDecimal preco_venda,
+    public Produto(String nome, CategoriaProduto categoria, BigDecimal preco_custo, BigDecimal preco_venda,
             Boolean ativo, int ultimo_a_modificar, LocalDate created_at, LocalDate updated_at) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString().replace("-", "");
         this.nome = nome;
         this.categoria = categoria;
         this.preco_custo = preco_custo;

@@ -9,7 +9,7 @@ public class CategoriaProduto {
 
 
     
-    public CategoriaProduto(int id, String nome, String sigla) {
+    public CategoriaProduto(String nome, String sigla) {
         this.id = UUID.randomUUID().toString().replace("-", "");
         this.nome = nome;
         this.sigla = sigla;
